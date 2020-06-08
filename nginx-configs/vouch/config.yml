@@ -1,0 +1,34 @@
+
+# vouch config
+# bare minimum to get vouch running with OpenID Connect (such as okta)
+
+vouch:
+  allowAllUsers: true
+  loglevel: debug
+  #  testing: true
+
+  jwt:
+    secret: <SECRET GOES HERE>
+
+  headers:
+    claims:
+      - id
+      - discriminator
+      - email
+
+  cookie:
+    domain: foundry.eltariel.com
+
+oauth:
+  # Generic OpenID Connect
+  # including okta
+  provider: oidc
+  client_id: <DISCORD CLIENT ID>
+  client_secret: <DISCORD CLIENT SECRET>
+  auth_url: https://discordapp.com/api/oauth2/authorize
+  token_url: https://discordapp.com/api/oauth2/token
+  user_info_url: https://discordapp.com/api/users/@me
+  scopes:
+    - identify
+    - email
+  callback_url: https://vouch.foundry.eltariel.com/auth
